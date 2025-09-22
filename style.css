@@ -1,0 +1,232 @@
+* { box-sizing: border-box;}
+html, body {height: 100%; margin: 0;}
+
+
+html {
+    scroll-padding-top: 70px; /* guardo espacio para el menu */
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    position: fixed; top: 0; left: 0; right: 0; height: 60px;
+    display: flex; justify-content: flex-end; align-items: center;
+    padding: 0 24px; 
+    background: linear-gradient(90deg,#3a506b , #1c2541,#031340 );
+    border-bottom: 1px solid #222;
+    z-index: 1000;
+}
+
+nav ul { display: flex; gap: 24px; margin: 0; padding: 0; list-style: none; }
+nav li { list-style: none; }
+
+nav a {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.15rem;          
+    font-weight: 600;
+    letter-spacing: .2px;
+    color: #e5e7eb; text-decoration: none;
+}
+
+nav a:hover { color: #10B981; text-underline-offset: 4px; text-decoration: underline; }
+
+
+.bloque {
+    height: 100vh;             /* ocupa toda la pantalla */
+    overflow-y: auto;          /* scroll */
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;   /* sdesplazamiento suave */
+    overscroll-behavior-y: none;
+    
+}
+
+
+.bloque  section,
+.bloque  footer {
+    min-height: 100vh;           /* el bloque ocupa la pantalla disponble*/
+    scroll-snap-align: start;    /* alinea el inicio del bloque al frenar */
+    scroll-snap-stop: always;    /* la rueda engancha siempre */
+    padding: 30px 20px;
+    display: flex; flex-direction: column; justify-content: center; gap: 12px;
+    
+}
+
+
+#presentacion{
+    background: linear-gradient(135deg, #223e7f 0%, #0ea5a5 55%, #22d3ee 100%);
+    color: #f8fafc; 
+}
+
+#presentacion header {
+    max-width: 1100px;            
+    margin: 0 auto;               
+    padding: 20px;                  
+    display: flex;                  
+    align-items: center;           
+    gap: 24px; 
+}
+
+#presentacion h1 {
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 700;
+}
+#foto {
+  width: clamp(160px, 25vw, 400px);    /*  la imagen se adapta  */
+  height: clamp(160px, 25vw, 400px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,.25);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+
+#sobre_mi {
+    
+    padding: 90px 24px 32px;
+    background: #0ea5a5;
+    color: #e1e3e5;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr; /* izquierda más ancha que derecha */
+    align-items: start;                   
+    column-gap: 32px;                      /* separación entre columnas */
+     
+}
+
+#sobre_mi p,
+#sobre_mi h2{ 
+    grid-column: 1;
+}
+
+#sobre_mi h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-top: 0;
+}
+
+
+#sobre_mi p {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    line-height: 1.75;                  /* tamaño texto*/ 
+    max-width: 65ch;                     
+    margin: 0 0 14px;
+    color: #040404;                      
+}
+
+#sobre_mi .logos_conocimientos {
+    grid-column: 2;
+    justify-self: end;         /* pegado a la derecha */
+    align-self: start;         
+    margin-top: -100px;    /* subir o bajar logos*/       
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 1fr)); /* 2 columnas anchas */
+    grid-template-rows: repeat(4, 1fr);                   /* 4 filas */
+    gap: 28px 36px; 
+
+    height: 420px;             
+    width: 550px;              /* subir y bajar para alejar o acercar del margen derecho */
+    place-items: center;       /* centrar logo */
+}
+#sobre_mi .logos_conocimientos img{
+    height: 80px;              /* aumenta tamaño logos */
+    width: auto;                
+    object-fit: contain;        /*asegura que no se corte el logo*/
+    display: block;
+    transition: transform .15s ease, opacity .15s ease;
+
+}
+
+/*  bloque contacto  */
+#contacto{
+    background:#10B981;
+    color:#040404;
+    display:flex;
+    flex-direction:column;    /*pone a los hijos en columna, titulo,form y redes*/
+    align-items:center;
+    padding: 68px 20px 18px;    /* primer numero sube y baja todo el contenido */
+    font-style: italic;  
+}
+
+
+/* título y subtítulo centrados */
+#contacto h2{
+    text-align:center;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0 0 4px;
+    font-weight: 700
+}
+#contacto .lead{
+    text-align:center;
+    color:#040404;
+    margin: 0 0 18px;
+    font-size: clamp(.95rem, 2vw, 1.05rem);  /* */
+}
+
+/*  Formulario en grid: 2 columnas arriba, mensaje full abajo  */
+#contacto form{
+    width: min(960px, 92%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px; 
+}
+
+#contacto label{
+    display:block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+    color: #1e293b;    
+    font-weight: 800;
+}
+
+#contacto input[type="text"],
+#contacto input[type="email"],
+#contacto textarea{
+    width:100%;
+    border:none;
+    border-bottom:2px solid #e2e8f0;
+    padding:10px 2px;
+    background:transparent;
+    outline:none;
+    font:inherit;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+#contacto input:focus,
+#contacto textarea:focus{
+    border-bottom-color:#6d28d9;
+    box-shadow: 0 2px 0 0 #6d28d9 inset;
+}
+
+#contacto textarea{
+    grid-column: 1 / -1;
+    height:  60px;
+    resize: vertical;
+}
+
+#contacto button[type="submit"]{
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 4px;
+    padding: 12px 28px;
+    border: 2px solid #6d28d9;
+    background: transparent;
+    color:#6d28d9;
+    font-weight:700;
+    letter-spacing:.08em;
+    border-radius:10px;
+    cursor:pointer;
+    transition: transform .12s, background .2s, color .2s;
+}
+#contacto button[type="submit"]:hover{
+    background:#6d28d9; color:#fff; transform: translateY(-1px);
+}
+
+#contacto .redes{
+    margin-top: 12px;
+    display:flex; gap:12px; justify-content:center; align-items:center;
+}
+#contacto .redes img{ width:32px; height:32px; display:block; }
